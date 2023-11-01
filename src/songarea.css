@@ -1,0 +1,117 @@
+.song-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 20rem;
+  max-height: 100%;
+  border: 1px solid #ffffff;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: background 0.5s;
+  transition: color 0.5s;
+}
+
+.song-area:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 41, 0) 0%,
+    rgb(255, 251, 0) 100%
+  );
+  color: black;
+}
+.version-icon {
+  max-width: 10rem;
+  padding-bottom: 10px;
+}
+
+.genre {
+  padding: 10px;
+  text-align: center;
+}
+
+.title {
+  padding: 10px;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff 0%, rgb(131, 131, 131) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 1px;
+  -webkit-text-stroke-color: rgb(0, 0, 0);
+  color: transparent;
+}
+.title-leggendaria {
+    padding: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    background: linear-gradient(180deg, #ffffff 0%, rgb(255, 0, 212) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    color: transparent;
+  }
+
+.artist {
+  padding: 10px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+.difficulty-number {
+  font-size: 1.5rem;
+}
+.difficulty {
+  max-width: 10rem;
+}
+.beginner {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 41, 0) 0%,
+    rgba(0, 255, 41, 0.6) 100%
+  );
+}
+
+.normal {
+  background: linear-gradient(
+    180deg,
+    rgba(78, 16, 255, 0) 0%,
+    rgba(78, 16, 255, 0.6) 100%
+  );
+}
+
+.hyper {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 230, 0, 0) 0%,
+    rgba(255, 230, 0, 0.6) 100%
+  );
+}
+
+.another {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 0, 0, 0) 0%,
+    rgba(255, 0, 0, 0.53) 100%
+  );
+}
+
+.leggendaria {
+  background: linear-gradient(
+    180deg,
+    rgba(219, 0, 255, 0) 0%,
+    rgba(219, 0, 255, 0.6) 100%
+  );
+}
+
+.random-pulls {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  background: none;
+  padding: 20px;
+}
