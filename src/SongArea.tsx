@@ -12,6 +12,7 @@ export default function SongArea(props:any) {
         <div className="random-pulls">
             {randomizedSongs[0] && (randomizedSongs.map((song : Song) => {
                 return <div>
+                    <div className="song-number">{(randomizedSongs.indexOf(song))+1}</div>
                     <SingleSong  song={song} random={pullRandom} selected={[selectedSongs, setSelectedSongs]}/>
                 </div>
             }))}

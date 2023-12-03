@@ -16,6 +16,7 @@ export default function SingleSong(props: any) {
   let difficulty = "";
   let difficultyNumber = 0;
   let isLeggendaria = false;
+  let isEpolis = false;
 
   if (props.song.foundDifficulty === "[B]") {
     songAreaClass = "song-area beginner";
@@ -48,6 +49,9 @@ export default function SingleSong(props: any) {
     difficultyIcon = leggendariaIcon;
     isLeggendaria = true;
   }
+  if (props.song.version === "EPOLIS"){
+    isEpolis = true
+  }
 
   function handleClick() {
     let newSelectedSongs = [...selectedSongs];
@@ -59,7 +63,7 @@ export default function SingleSong(props: any) {
     <div className={songAreaClass} onClick={handleClick}>
       <img className="version-icon" src={props.song.versionIcon}></img>
       <div className="genre">{props.song.genre}</div>
-      <div className={isLeggendaria ? "title-leggendaria" : "title"}>
+      <div className={isLeggendaria ? "title-leggendaria" : isEpolis ?  "title-epolis" : "title"}>
         {props.song.title}
       </div>
       <div className="artist">{props.song.artist}</div>

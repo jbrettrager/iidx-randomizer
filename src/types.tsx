@@ -10,6 +10,7 @@ export type Song = {
     leggendariaDiff: string;
     foundDifficulty: string;
     versionIcon: string;
+    playedDate: number;
 }
 
 export type Difficulties =  {
@@ -19,7 +20,9 @@ export type Difficulties =  {
     another: boolean;
     leggendaria: boolean;
 }
-
+export type Recent = {
+    filter: boolean
+}
 export type LevelFilters = {
     "1": boolean;
     "2": boolean;

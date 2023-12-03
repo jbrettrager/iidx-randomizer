@@ -15,6 +15,8 @@ export default function Header(props: any) {
   const setRecentFilter = props.props[9];
   const songlist = props.props[10];
   const setSonglist = props.props[11];
+  const recentless = props.props[12]
+  const setRecentless = props.props[13]
   const randomizedSongs = props.random[0]
   const setRandomizedSongs = props.random[1]
   const pullRandom = props.random[2]
@@ -47,7 +49,7 @@ export default function Header(props: any) {
   }
 
   function parseCSV() {
-    console.log(csvData);
+    console.log(songlist)
   }
 
   function findIcon(version: string) {
@@ -104,11 +106,15 @@ export default function Header(props: any) {
         anotherDiff: shifted[26],
         leggendariaDiff: shifted[33],
         foundDifficulty: "",
-        versionIcon: findIcon(shifted[0])
+        versionIcon: findIcon(shifted[0]),
+        playedDate: new Date(shifted[40].split(" ")[0]).getTime()
       };
       songDb.push(currentSong);
       setSonglist(songDb)
     }
+    songDb.sort((a, b) => a.playedDate - b.playedDate)
+    let noRecents: Array<Song> = songDb.slice(0, 1200)
+    setRecentless(noRecents)
   }
 
   function clearPulls() {
