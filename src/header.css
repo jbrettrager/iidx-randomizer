@@ -1,3 +1,97 @@
 .csv-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 50px;
+}
+
+
+.filters {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid white;
+}
+
+.level-filter-box {
+    display: flex;
+    flex-direction: row;
+}
+
+.level-filter-box input[type="checkbox"] {
+    appearance: none;
+    background-color:whitesmoke;
+    border: 2px solid white;
+    padding: 9px;
+    border-radius: 3px;
+    display:inline-block;
+    position:relative;
+    transition: ease-in-out 0.3s
+}
+
+.level-filter-box label {
+    vertical-align: top;
+}
+
+.level-filter-box input[type="checkbox"]:active, .level-filter-box input[type="checkbox"]:checked:active  {
+    background-color: yellow;
+}
+
+.level-filter-box input[type="checkbox"]:checked  {
+    background-color: blue;
+}
+
+.difficulty-filter {
+    display: flex;
+    flex-direction: row;
+}
+
+.difficulty-filter input[type="checkbox"] {
+    appearance: none;
+    background-color:whitesmoke;
+    border: 2px solid white;
+    padding: 9px;
+    border-radius: 3px;
+    display:inline-block;
+    position:relative;
+    transition: ease-in-out 0.3s
+}
+.difficulty-filter input[type="checkbox"]:active, .difficulty-filter input[type="checkbox"]:checked:active  {
+    background-color: yellow;
+}
+
+.difficulty-filter input[type="checkbox"]:checked  {
+    background-color: blue;
+}
+
+.generated-number {
+    font-size: x-large;
+}
+
+.pull-number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.plus-minus {
+    display:flex;
+    flex-direction: row;
+    padding: 3px;
+}
+
+.plus {
+    background-color: aqua;
+    color:black;
+    padding: 10px;
+    text-align: center;
+    width: 1rem;
+}
+
+.minus {
+    background-color: lightcoral;
+    color:black;
+    padding: 10px;
+    text-align: center;
+    width: 1rem;
 }
