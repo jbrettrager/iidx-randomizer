@@ -1,6 +1,14 @@
 import React from "react";
+import { useEffect } from "react";
+import { gapi } from "gapi-script";
 import "./header.css";
 import { Song } from "./types.tsx";
+import Login from "./GoogleLogin.tsx";
+import Logout from "./GoogleLogout.tsx";
+ import {
+  startVote,
+  stopVote
+} from "./youtubeService.ts"; 
 
 export default function Header(props: any) {
   const csvData = props.props[0];
@@ -22,7 +30,23 @@ export default function Header(props: any) {
   const pullRandom = props.random[2];
   const selectedSongs = props.selected[0];
   const setSelectedSongs = props.selected[1];
+  const clientId =
+    "787282536842-njbudlcbr4c9p739eep6ggv0nkuodh46.apps.googleusercontent.com";
+  const scope = [
+    "https://www.googleapis.com/auth/youtube.readonly",
+    "https://www.googleapis.com/auth/youtube",
+    "https://www.googleapis.com/auth/youtube.force-ssl",
+  ];
 
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: scope,
+      });
+    }
+    gapi.load("client:auth2", start);
+  });
   function handleLevelCheckboxes(e: React.ChangeEvent<HTMLInputElement>) {
     let target = e.target.id;
     let newLevelFilters = [...levelFilters];
@@ -173,6 +197,7 @@ export default function Header(props: any) {
   function handleFilter() {
     setRecentFilter(!recentFilter);
   }
+
   return (
     <div className="header">
       <div className="filters">
@@ -356,23 +381,29 @@ export default function Header(props: any) {
           </div>
         </div>
         {!songlist[0] && (
-        <div className="csv-input-area">
-          <label>
-            Input area for CSV
-            <textarea
-              id="csv-input"
-              className="csv-input"
-              value={csvData}
-              onChange={(e) => handleCsvInput(e)}
-            ></textarea>
-          </label>
-          <button onClick={createDb}>Create DB</button>
+          <div className="csv-input-area">
+            <label>
+              Input area for CSV
+              <textarea
+                id="csv-input"
+                className="csv-input"
+                value={csvData}
+                onChange={(e) => handleCsvInput(e)}
+              ></textarea>
+            </label>
+            <button onClick={createDb}>Create DB</button>
+          </div>
+        )}
+        <button onClick={pullRandom}>PULL RANDOMS</button>
+        <button onClick={clearPulls}>Clear Selected Pulls</button>
+        <div className="yt-area">
+          <Login />
+          <Logout />
+          {/* <button onClick={findActiveChat}>Find Active Chat</button> */}
+          <button onClick={startVote}>Start Vote</button> 
+          <button onClick={stopVote}>Stop Vote</button>  
         </div>
-      )}
-      <button onClick={pullRandom}>PULL RANDOMS</button>
-      <button onClick={clearPulls}>Clear Selected Pulls</button>
       </div>
-     
     </div>
   );
 }
