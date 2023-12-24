@@ -2,8 +2,8 @@ import { GoogleLogin } from "react-google-login";
 
 export default function Login() {
   const clientId =
-    "787282536842-njbudlcbr4c9p739eep6ggv0nkuodh46.apps.googleusercontent.com";
-  const clientSecret = "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";
+    "client-id";
+  const clientSecret = "client-secret";
   const redirectURI = "http://localhost:3000/";
 
   function onSuccess(res: any) {

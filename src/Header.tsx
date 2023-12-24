@@ -31,7 +31,7 @@ export default function Header(props: any) {
   const selectedSongs = props.selected[0];
   const setSelectedSongs = props.selected[1];
   const clientId =
-    "787282536842-njbudlcbr4c9p739eep6ggv0nkuodh46.apps.googleusercontent.com";
+    "client-id";
   const scope = [
     "https://www.googleapis.com/auth/youtube.readonly",
     "https://www.googleapis.com/auth/youtube",
