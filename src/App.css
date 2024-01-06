@@ -2,3 +2,16 @@ body {
   background-color: #282d35;
   color:white;
 }
+
+.selected-song-area {
+  display: flex;
+}
+
+.selected-song-area.column {
+  flex-direction: column-reverse;
+}
+
+.selected-song-area.row {
+  justify-content: left;
+  flex-direction: row-reverse;
+}

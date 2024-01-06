@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import "./header.css";
 import { Song } from "./types.tsx";
 
@@ -22,6 +23,10 @@ export default function Header(props: any) {
   const pullRandom = props.random[2];
   const selectedSongs = props.selected[0];
   const setSelectedSongs = props.selected[1];
+  const displaySelected = props.selected[2];
+  const setDisplaySelected = props.selected[3];
+  const rowOrColumn = props.props[14];
+  const setRowOrColumn = props.props[15];
 
   function handleLevelCheckboxes(e: React.ChangeEvent<HTMLInputElement>) {
     let target = e.target.id;
@@ -38,10 +43,6 @@ export default function Header(props: any) {
 
   function handleCsvInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setCsvData(e.target.value);
-  }
-
-  function parseCSV() {
-    console.log(songlist);
   }
 
   function findIcon(version: string) {
@@ -163,11 +164,21 @@ export default function Header(props: any) {
     setSelectedSongs([]);
   }
 
+  function orientationSwitch() {
+    setRowOrColumn(!rowOrColumn)
+  }
+
   function addNumber() {
     if (generatedNumber < 10) setGeneratedNumber(generatedNumber + 1);
   }
   function subNumber() {
     if (generatedNumber > 1) setGeneratedNumber(generatedNumber - 1);
+  }
+  function addNumberDisplay() {
+    if (displaySelected < 10) setDisplaySelected(displaySelected + 1);
+  }
+  function subNumberDisplay() {
+    if (displaySelected > 1) setDisplaySelected(displaySelected - 1);
   }
 
   function handleFilter() {
@@ -355,22 +366,44 @@ export default function Header(props: any) {
             </div>
           </div>
         </div>
-        {!songlist[0] && (
-        <div className="csv-input-area">
-          <label>
-            Input area for CSV
-            <textarea
-              id="csv-input"
-              className="csv-input"
-              value={csvData}
-              onChange={(e) => handleCsvInput(e)}
-            ></textarea>
-          </label>
-          <button onClick={createDb}>Create DB</button>
+        <div className="display-number">
+          Number of Selected Songs to Display
+          <div className="display-selected">{displaySelected}</div>
+          <div className="plus-minus">
+            <div className="minus" onClick={subNumberDisplay}>
+              <div>-</div>
+            </div>
+            <div className="plus" onClick={addNumberDisplay}>
+              <div>+</div>
+            </div>
+            </div>
+            <div className="row-column">
+            <label>
+            <input type="checkbox" id="row-or-column" onClick={orientationSwitch} checked={rowOrColumn}></input>
+            Display Selected Songs in a Row
+            </label>
+          </div>
         </div>
-      )}
-      <button onClick={pullRandom}>PULL RANDOMS</button>
-      <button onClick={clearPulls}>Clear Selected Pulls</button>
+        {!songlist[0] && (
+          <div className="csv-input-area">
+            <label>
+              Input area for CSV
+              <textarea
+                id="csv-input"
+                className="csv-input"
+                value={csvData}
+                onChange={(e) => handleCsvInput(e)}
+              ></textarea>
+            </label>
+            <button onClick={createDb}>Create DB</button>
+          </div>
+        )}
+        {songlist[0] && (
+          <div className="random-buttons">
+            <button onClick={pullRandom}>PULL RANDOMS</button>
+            <button onClick={clearPulls}>Clear Selected Pulls</button>
+          </div>
+        )}
       </div>
      
     </div>

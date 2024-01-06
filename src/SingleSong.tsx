@@ -7,9 +7,10 @@ import normalIcon from "./img/normal.png";
 import beginnerIcon from "./img/beginner.png";
 
 export default function SingleSong(props: any) {
-  const pullRandom = props.random;
+  const rerollSong = props.random;
   const selectedSongs = props.selected[0];
   const setSelectedSongs = props.selected[1];
+  const displaySelected = props.selected[2];
 
   let songAreaClass = "";
   let difficultyIcon = "";
@@ -49,21 +50,36 @@ export default function SingleSong(props: any) {
     difficultyIcon = leggendariaIcon;
     isLeggendaria = true;
   }
-  if (props.song.version === "EPOLIS"){
-    isEpolis = true
+  if (props.song.version === "EPOLIS") {
+    isEpolis = true;
   }
 
   function handleClick() {
     let newSelectedSongs = [...selectedSongs];
-    newSelectedSongs.push(props.song);
+    if (newSelectedSongs.length < displaySelected) {
+      newSelectedSongs.unshift(props.song);
+    }
+    else if (newSelectedSongs.length === displaySelected) {
+      newSelectedSongs.pop()
+      newSelectedSongs.unshift(props.song)
+    }
     setSelectedSongs(newSelectedSongs);
-    pullRandom();
+    rerollSong(props.song);
   }
+
   return (
     <div className={songAreaClass} onClick={handleClick}>
       <img className="version-icon" src={props.song.versionIcon}></img>
       <div className="genre">{props.song.genre}</div>
-      <div className={isLeggendaria ? "title-leggendaria" : isEpolis ?  "title-epolis" : "title"}>
+      <div
+        className={
+          isLeggendaria
+            ? "title-leggendaria"
+            : isEpolis
+            ? "title-epolis"
+            : "title"
+        }
+      >
         {props.song.title}
       </div>
       <div className="artist">{props.song.artist}</div>
